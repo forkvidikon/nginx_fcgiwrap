@@ -11,11 +11,11 @@ docker build -t mentainer/nginxfcgi:1 .
 
 ### Запуск контенера
 
-`docker run -d -p 80:80 -v \
-./conf/nginx.conf:/etc/nginx/nginx.conf \
--v ./conf/http.d:/etc/nginx/http.d \
--v ./data:/var/sh/cgi \
--v ./html:/var/www/html \
+`docker run -d -p 80:80 -v 
+./conf/nginx.conf:/etc/nginx/nginx.conf 
+-v ./conf/http.d:/etc/nginx/http.d 
+-v ./data:/var/sh/cgi 
+-v ./html:/var/www/html 
 --name vidikon_nginx vidikon/nginx:1`
 
 Требуется также заменить имя контейнера и имя образа на свои имена
