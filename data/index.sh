@@ -1,7 +1,9 @@
-#!/usr/bin/env ash
+#!/bin/ash
+
 
 echo "Content-type: text/html"
 echo ""
+
 
 #Заглушка - имя изображения, содержащего qr код
 imagename="qrcode.png"
@@ -10,6 +12,8 @@ imagename="qrcode.png"
 autchPage="entrypoint.sh"
 
 
+        # Создать базу, в которой будем отслеживать qr-коды. Если уже существует, то создана не будет
+     #   http PUT "http://admin:admin@couchserver:5984/qrlive"
 
 
     # Провека на существование файла блокировки
@@ -32,10 +36,17 @@ autchPage="entrypoint.sh"
         # &>/dev/null используется для подавления любого вывода, чтобы он случайно не оказался на сайте
         nohup /var/sh/cgi/./lock.sh $dategenqr $block &>/dev/null &
         #Ссылка для qr-кода
-        link=$(echo "http://$HTTP_HOST/cgi/$autchPage?qrid=$RANDOM")
+        qrcodeid="$RANDOM"
+        link=$(echo "http://$HTTP_HOST/cgi/$autchPage?qrid=$qrcodeid")
 
         # Генерируем qr код
         qrencode -d 320 -s 6 -l H -o "/var/www/html/img/$imagename" "$link"
+
+
+
+       http --ignore-stdin -q PUT "http://admin:admin@couchserver:5984/qrlive/$qrcodeid"  timestamp="$dategenqr"
+      
+
         
     fi
 
