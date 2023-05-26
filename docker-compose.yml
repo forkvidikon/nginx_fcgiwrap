@@ -3,7 +3,7 @@ version: "3"
 services: 
   nginx_wrap:
     build: .
-    container_name: vidikon_nwrap
+    container_name: kirra_ywrap
     ports:
       - 80:80
     restart: unless-stopped
@@ -12,3 +12,14 @@ services:
       - ./conf/http.d:/etc/nginx/http.d
       - ./data:/var/sh/cgi
       - ./html:/var/www/html
+
+  couchdb:
+    image: couchdb
+    restart: unless-stopped
+    ports:
+      - 8200:5948
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    volumes:
+      - ./base:/opt/couchdb/data
