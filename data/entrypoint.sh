@@ -35,7 +35,7 @@ if [ $timefailed  -gt 240 ] ; then
         
         studentform="$(cat /var/www/html/template/studentform.html)"
         echo "Content-type: text/html"
-        echo "Set-Cookie: qrallow=yes"
+        echo "Set-Cookie: qrallow=yes;  max-age=180"
         echo ""
         cat /var/www/html/entrypoint.html | sed "s|QRCODEID|$response|g" | sed "s|<!--form||g" | sed "s|form-->||g"
 
