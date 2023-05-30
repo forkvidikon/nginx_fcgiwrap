@@ -12,3 +12,16 @@ services:
       - ./conf/http.d:/etc/nginx/http.d
       - ./data:/var/sh/cgi
       - ./html:/var/www/html
+    links:
+      - couchserver
+
+    couchserver:
+      image: couchdb
+      restart: always
+      ports:
+        - "5984:5984"
+      environment:
+        - COUCHDB_USER=admin
+        - COUCHDB_PASSWORD=admin
+      volumes:
+        - ./base:/opt/couchdb/data
