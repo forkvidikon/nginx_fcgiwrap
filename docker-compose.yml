@@ -1,6 +1,6 @@
 version: "3"
 
-services: 
+services:
   nginx_wrap:
     build: .
     container_name: vidikon_nwrap
@@ -12,3 +12,16 @@ services:
       - ./conf/http.d:/etc/nginx/http.d
       - ./data:/var/sh/cgi
       - ./html:/var/www/html
+    links:
+      - couchserver
+
+  couchserver:
+    image: couchdb
+    restart: unless-stopped
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=admin
+    volumes:
+      - ./base:/opt/couchdb/data
