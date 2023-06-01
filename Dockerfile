@@ -5,7 +5,7 @@ FROM alpine:3.17
 #RUN echo "https://mirror.yandex.ru/mirrors/alpine/v3.17/main" > /etc/apk/repositories
 
 # Устанавливаем nginx и fcgiwrap
-RUN  apk add  --no-cache nginx fcgiwrap libqrencode
+RUN  apk add  --no-cache nginx fcgiwrap libqrencode httpie jg
 # Закидываем внутрь контейнера скрипт который делает всякие полезные штуки (читай коментарии в скрипте). Запекаем его в образе
 COPY sh/service.sh /service.sh
 # И задаем ему права на исполнение
