@@ -31,12 +31,13 @@ if [ $timefailed  -gt 240 ] ; then
 
     else
         response="ID $qrid прошел проверку"
-        # отдаем пользователю html страницу, заменя переменные на реальные данные
 
         studentform="$(cat /var/www/html/template/studentform.html)"
         echo "Content-type: text/html"
         echo "Set-Cookie: qrallow=yes"
         echo ""
+
+        # отдаем пользователю html страницу, заменя переменные на реальные данные
         cat /var/www/html/entrypoint.html | sed "s|QRCODEID|$response|g" | sed "s|<!--form||g" | sed "s|form-->||g"
 
         fi
