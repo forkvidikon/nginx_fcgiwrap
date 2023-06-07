@@ -41,8 +41,8 @@ autchPage="entrypoint.sh"
 
 # отдаем пользователю html страницу, заменя переменные на реальные данные
 cat /var/www/html/qr.html | sed "s|QRCODE_SECTION|/img/$imagename|g" | sed "s|QR_PAGE_AUTH|$autchPage|g"
-# env
-# echo  " date=$dategenqr"
+env
+echo  " date=$dategenqr"
 
 
 
