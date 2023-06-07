@@ -32,9 +32,14 @@ if [ $timefailed  -gt 240 ] ; then
     else
         response="ID $qrid прошел проверку"
 
+        rand_qrallow="$RANDOM"
+
+        # Записываем в базу qrallow
+        http --ignore-stdin -q PUT "http://admin:admin@couchserver:5984/qrallow/$rand_qrallow"
+
         studentform="$(cat /var/www/html/template/studentform.html)"
         echo "Content-type: text/html"
-        echo "Set-Cookie: qrallow=yes"
+        echo "Set-Cookie: qrallow=$rand_qrallow)"
         echo ""
 
         # отдаем пользователю html страницу, заменя переменные на реальные данные
