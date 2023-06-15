@@ -37,7 +37,7 @@ autchPage="entrypoint.sh"
         # Генерируем qr код
         qrencode -d 320 -s 6 -l H -o "/var/www/html/img/$imagename" "$link"
 
-        http --ignore-stdin -q PUT "http://admin:admin@couchserver:5984/qrlive/$qrcodeid"  timestamp="$dategenqr"
+        http --ignore-stdin -q PUT "http://admin:admin@192.168.122.207:5984/qrlive/$qrcodeid"  timestamp="$dategenqr"
 
     fi
 

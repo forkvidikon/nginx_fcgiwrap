@@ -5,7 +5,7 @@ qrid=$(echo "$QUERY_STRING" | awk -F "=" '{ print $2 }')
 
 dateloadpage=$(date +%s)
 
-request="$(http --ignore-stdin "http://admin:admin@couchserver:5984/qrlive/$qrid")"
+request="$(http --ignore-stdin "http://admin:admin@192.168.122.207:5984/qrlive/$qrid")"
 
 if [[ "$(echo "$request" | jq -r .error)" == "not_found" ]]; then
     response="Ошибка. Неверный ID - $qrid"
@@ -35,7 +35,7 @@ if [ $timefailed  -gt 240 ] ; then
         rand_qrallow="$RANDOM"
 
         # Записываем в базу qrallow
-        http --ignore-stdin -q PUT "http://admin:admin@couchserver:5984/qrallow/$rand_qrallow"
+        http --ignore-stdin -q PUT "http://admin:admin@192.168.122.207:5984/qrallow/$rand_qrallow"
 
         studentform="$(cat /var/www/html/template/studentform.html)"
         echo "Content-type: text/html"

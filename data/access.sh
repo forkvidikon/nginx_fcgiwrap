@@ -4,7 +4,7 @@
 cookie_allow="$(echo $HTTP_COOKIE | awk -F "=" '{ print $2 }')"
 llc="$(echo $HTTP_COOKIE | awk -F "=" '{ print $1 }')"
 
-qr_allow_request="$(http --ignore-stdin "http://admin:admin@couchserver:5984/qrallow/$cookie_allow")"
+qr_allow_request="$(http --ignore-stdin "http://admin:admin@192.168.122.207:5984/qrallow/$cookie_allow")"
 
 # Проверяем, есть ли у нас qrallow пользователя
 if [[ "$(echo "$qr_allow_request" | jq -r .error)" == "not_found" ]];
