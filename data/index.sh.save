@@ -9,7 +9,7 @@ imagename="qrcode.png"
 # Заглушка - страница, на которую переходит пользователь после сканирования кода
 autchPage="entrypoint.sh"
 
-	if ! ["$HTTP_COOKIE" | grep -E "+longcookie" ]
+	if ! ["$HTTP_COOKIE" | grep "longcookie"]
 
 
 	    # Провека на существование файла блокировки
