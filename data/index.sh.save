@@ -32,12 +32,12 @@ autchPage="entrypoint.sh"
         # &>/dev/null используется для подавления любого вывода, чтобы он случайно не оказался на сайте
         nohup /var/sh/cgi/./lock.sh $dategenqr $block &>/dev/null &
         #Ссылка для qr-кода
-        qrcodeid="$RANDOM"
-        link=$(echo "http://$HTTP_HOST/cgi/$autchPage?qrid=$qrcodeid")
+        link=$(echo "http://$HTTP_HOST/cgi/$autchPage?qrid=$RANDOM")
+
+        qrcodeid="$RAND
+
         # Генерируем qr код
         qrencode -d 320 -s 6 -l H -o "/var/www/html/img/$imagename" "$link"
-
-        http --ignore-stdin -q PUT "http://admin:admin@192.168.122.207:5984/qrlive/$qrcodeid"  timestamp="$dategenqr"
         
     fi
 

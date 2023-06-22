@@ -22,7 +22,7 @@ let "timefailed=dateloadpage-startlive "
 
 if [ $timefailed  -gt 240 ] ; then
 
-    response="Ошибка. QR од с ID $qrid устарел, а ты редиска"
+    response="Ошибка. QR од с ID $qrid устарел, а ты морковка"
 
 
     echo "Content-type: text/html"
@@ -42,7 +42,7 @@ if [ $timefailed  -gt 240 ] ; then
         echo "Set-Cookie: qrallow=$rand_qrallow)"
         echo ""
 
-        # отдаем пользователю html страницу, заменя переменные на реальные данные
+        # отдаем пользователю html страницу, заменяя переменные на реальные данные
         cat /var/www/html/entrypoint.html | sed "s|QRCODEID|$response|g" | sed "s|<!--form||g" | sed "s|form-->||g"
 
         fi
